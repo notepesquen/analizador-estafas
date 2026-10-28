@@ -1,0 +1,124 @@
+[
+  {
+    "id": "banco_whatsapp_acortador",
+    "texto": "Hola, soy del Banco. Detectamos acceso sospechoso. Hacé clic aquí para verificar: bit.ly/banco-seguro",
+    "nivel": "alto",
+    "contiene": ["alarma_seguridad", "cta_link", "acortador", "banco_con_link"]
+  },
+  {
+    "id": "paquete_correo",
+    "texto": "Su paquete de Correo Argentino está retenido. Pague $150 de arancel aquí: correo-ar-pago.com",
+    "nivel": "alto",
+    "contiene": ["arancel_paquete", "dinero", "dice_ser_entidad", "imita_marca", "muchos_guiones"]
+  },
+  {
+    "id": "familiar_numero_nuevo",
+    "texto": "Hola mamá, cambié de número. Necesito que me hagas una transferencia urgente, no le cuentes a papá",
+    "nivel": "alto",
+    "contiene": ["familiar_numero_nuevo", "dinero", "urgencia", "secreto"]
+  },
+  {
+    "id": "mensaje_normal",
+    "texto": "Hola, ¿cómo andás? Mañana nos vemos a las 8 en el bar, llevo yo las bebidas.",
+    "nivel": "bajo",
+    "puntaje": 0
+  },
+  {
+    "id": "anses_oficial",
+    "texto": "ANSES: tu turno es el lunes a las 10. Más info en https://www.anses.gob.ar/turnos",
+    "nivel": "bajo",
+    "no_contiene": ["dice_ser_entidad", "imita_marca"]
+  },
+  {
+    "id": "anses_falso",
+    "texto": "Tu cuenta será bloqueada. Ingresá a anses-beneficio.xyz con tu clave",
+    "nivel": "alto",
+    "contiene": ["amenaza", "pide_credenciales", "imita_marca", "tld_raro"],
+    "no_contiene": ["dice_ser_entidad"]
+  },
+  {
+    "id": "ip_directa",
+    "texto": "Actualizá tus datos acá: http://190.12.34.56/login",
+    "nivel": "alto",
+    "contiene": ["verificar_datos", "ip_directa"]
+  },
+  {
+    "id": "punycode_mercadopago",
+    "texto": "Tu cuenta Mercado Pago tiene un problema: https://xn--mercadopag-9db.com/ayuda",
+    "nivel": "alto",
+    "contiene": ["punycode", "dice_ser_entidad"]
+  },
+  {
+    "id": "premio_urgente",
+    "texto": "¡Felicitaciones! Ganaste un premio de $500.000. Reclamalo en bit.ly/premio-hoy en las próximas 24 horas",
+    "nivel": "alto",
+    "contiene": ["premio", "urgencia", "acortador"]
+  },
+  {
+    "id": "un_solo_cta",
+    "texto": "Mirá las fotos del cumpleaños, hacé clic acá",
+    "nivel": "medio",
+    "contiene": ["cta_link"]
+  },
+  {
+    "id": "vacio",
+    "texto": "",
+    "nivel": "bajo",
+    "puntaje": 0
+  },
+  {
+    "id": "mercadolibre_oficial",
+    "texto": "Tu pedido de Mercado Libre salió. Seguilo en https://www.mercadolibre.com.ar/pedidos",
+    "nivel": "bajo",
+    "no_contiene": ["dice_ser_entidad", "imita_marca"]
+  },
+  {
+    "id": "banco_pide_clave",
+    "texto": "Banco Galicia: ingresá tu clave y el código de verificación para evitar el bloqueo",
+    "nivel": "alto",
+    "contiene": ["pide_credenciales", "datos_sensibles"]
+  },
+  {
+    "id": "otp_legitimo",
+    "texto": "Tu código de verificación de Mercado Pago es 482913. No lo compartas con nadie.",
+    "nivel": "bajo",
+    "contiene": ["datos_sensibles"],
+    "no_contiene": ["pide_credenciales"]
+  },
+  {
+    "id": "toma_whatsapp",
+    "texto": "Hola, te mandé un código por error por SMS, me lo pasás? Es el código que te llegó",
+    "nivel": "medio",
+    "contiene": ["pide_credenciales"]
+  },
+  {
+    "id": "blog_inocuo",
+    "texto": "Novedades de la semana en nuestro blog: https://miblog.com.ar/semana-42",
+    "nivel": "bajo",
+    "puntaje": 0
+  },
+  {
+    "id": "dominio_raro_sin_esquema",
+    "texto": "Mirá esto www.sorteo-premio-ganador.top.",
+    "nivel": "medio",
+    "contiene": ["tld_raro", "muchos_guiones"]
+  },
+  {
+    "id": "mayusculas_signos",
+    "texto": "URGENTE!!! SU CUENTA SERÁ BLOQUEADA",
+    "nivel": "medio",
+    "contiene": ["urgencia", "amenaza"]
+  },
+  {
+    "id": "email_no_es_enlace",
+    "texto": "Escribime a juan.perez@gmail.com cuando puedas",
+    "nivel": "bajo",
+    "puntaje": 0
+  },
+  {
+    "id": "token_en_url_no_cuenta",
+    "texto": "Mirá el informe en https://empresa.com.ar/informe?token=abc123",
+    "nivel": "bajo",
+    "no_contiene": ["datos_sensibles"]
+  }
+]
