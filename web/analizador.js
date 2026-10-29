@@ -99,6 +99,21 @@
       return !!m && contiene(reglas.tlds_reconocidos, m[1]);
     }
 
+    // IP suelta (sin http://) que vale como enlace: octetos validos y no privada.
+    function esIpPublica(candidato) {
+      var host = extraerHost(candidato);
+      if (!RE_IP_HOST.test(host)) { return false; }
+      var p = host.split("."), n = [], q;
+      for (q = 0; q < 4; q++) {
+        n.push(parseInt(p[q], 10));
+        if (n[q] > 255) { return false; }
+      }
+      var privada = n[0] === 0 || n[0] === 10 || n[0] === 127 ||
+        (n[0] === 172 && n[1] >= 16 && n[1] <= 31) ||
+        (n[0] === 192 && n[1] === 168) || (n[0] === 169 && n[1] === 254);
+      return !privada;
+    }
+
     function esOficial(host, ent) {
       for (var k = 0; k < ent.oficiales.length; k++) {
         var d = ent.oficiales[k];
@@ -116,7 +131,7 @@
         var m = RE_EXPLICITO.exec(tok);
         if (m) {
           enlace = limpiar(m[0]);
-        } else if (limpio && limpio.indexOf("@") === -1 && (RE_IP.test(limpio) || esDominio(limpio))) {
+        } else if (limpio && limpio.indexOf("@") === -1 && ((RE_IP.test(limpio) && esIpPublica(limpio)) || esDominio(limpio))) {
           enlace = limpio;
         }
         if (enlace) {

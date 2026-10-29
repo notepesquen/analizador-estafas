@@ -109,6 +109,19 @@ class Analizador:
         m = _RE_DOMINIO.match(candidato)
         return bool(m) and m.group(1) in self._tlds
 
+    @staticmethod
+    def _es_ip_publica(candidato: str) -> bool:
+        """IP suelta (sin http://) que vale como enlace: octetos validos y no privada."""
+        host = extraer_host(candidato)
+        if not _RE_IP_HOST.match(host):
+            return False
+        a, b, _, _ = [int(x) for x in host.split(".")]
+        if any(int(x) > 255 for x in host.split(".")):
+            return False
+        privada = (a in (0, 10, 127) or (a == 172 and 16 <= b <= 31)
+                   or (a == 192 and b == 168) or (a == 169 and b == 254))
+        return not privada
+
     def _separar_enlaces(self, norm: str) -> Tuple[List[Dict[str, str]], str]:
         """Devuelve los enlaces encontrados y el texto sin ellos."""
         enlaces: List[Dict[str, str]] = []
@@ -119,7 +132,8 @@ class Analizador:
             m = _RE_EXPLICITO.search(tok)
             if m:
                 enlace = _limpiar(m.group(0))
-            elif limpio and "@" not in limpio and (_RE_IP.match(limpio) or self._es_dominio(limpio)):
+            elif limpio and "@" not in limpio and ((_RE_IP.match(limpio) and self._es_ip_publica(limpio))
+                                                  or self._es_dominio(limpio)):
                 enlace = limpio
             if enlace:
                 host = extraer_host(enlace)

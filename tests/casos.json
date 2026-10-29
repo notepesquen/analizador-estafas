@@ -120,5 +120,24 @@
     "texto": "Mirá el informe en https://empresa.com.ar/informe?token=abc123",
     "nivel": "bajo",
     "no_contiene": ["datos_sensibles"]
+  },
+  {
+    "id": "ips_privadas_texto_tecnico",
+    "texto": "Los routers (10.76.102.41/.34/.54) y el balanceador 192.168.1.10 atienden el host icecloud.telecom.com.ar, IP real en X-Forwarded-For.",
+    "nivel": "bajo",
+    "puntaje": 0,
+    "no_contiene": ["ip_directa"]
+  },
+  {
+    "id": "ip_invalida_no_es_enlace",
+    "texto": "La version 999.300.1.2 salio ayer",
+    "nivel": "bajo",
+    "puntaje": 0
+  },
+  {
+    "id": "ip_publica_suelta_si_es_enlace",
+    "texto": "Entrá a 190.12.34.56/login",
+    "nivel": "medio",
+    "contiene": ["ip_directa"]
   }
 ]
